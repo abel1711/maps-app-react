@@ -7,10 +7,4 @@ export interface PlacesContextProps {
 };
 
 
-
-
-
-
-
-
 export const PlacesContext = createContext<PlacesContextProps>( {} as PlacesContextProps );

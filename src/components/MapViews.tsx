@@ -1,6 +1,6 @@
 import { Map } from "mapbox-gl";
 import { useContext, useLayoutEffect, useRef } from "react"
-import { PlacesContext } from "../context"
+import { MapsContext, PlacesContext } from "../context"
 import { Loading } from "./";
 
 
@@ -8,6 +8,7 @@ import { Loading } from "./";
 export const MapViews = () => {
 
     const { isLoading, userLocation } = useContext( PlacesContext );
+    const { setMap } = useContext( MapsContext );
     const mapDivRef = useRef<HTMLDivElement>(null);
 
     
@@ -16,10 +17,12 @@ export const MapViews = () => {
             
             const map = new Map({
                 container: mapDivRef.current! , // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                style: 'mapbox://styles/mapbox/dark-v10', // style URL
                 center: userLocation , // starting position [lng, lat]
                 zoom: 14 // starting zoom
                 });
+                
+            setMap( map );
         }
 
     }, [ isLoading ])
